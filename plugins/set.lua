@@ -1,9 +1,20 @@
+--[[
+▀▄ ▄▀▀▄▄▀▀▄▄▀▀▄▄▀▀▄▄▀▀▄▄▀▀▄▄▀▀▄▀▄▄▀▀▄▄▀▀▄▄▀ 
+▀▄ ▄▀                                 ▀▄ ▄▀ 
+▀▄ ▄▀  Team name : (  🌐 VIP_TEAM 🌐  )▀▄ ▄▀ 
+▀▄ ▄▀                                 ▀▄ ▄▀ 
+▀▄ ▄▀   File name : ( help     )    ▀▄ ▄▀ 
+▀▄ ▄▀                                 ▀▄ ▄▀ 
+▀▄ ▄▀  Guenat team: ( @VIP_TEAM1  )   ▀▄ ▄▀ 
+▀▄ ▄▀                                 ▀▄ ▄▀ 
+▀▄▀▀▄▄▀▀▄▄▀▄▄▀▀▄▄▀▀▄▄▀▄▄▀▀▄▄▀▀▄▄▀▄▄▀▀▄▄▀▀▄▄ 
+—]]
 local function save_value(msg, name, value)
   if (not name or not value) then
     return "Usage: !set var_name value"
   end
   local hash = nil
-  if msg.to.type == 'chat' then
+  if msg.to.type == 'chat' or msg.to.type == 'channel'  then
     hash = 'chat:'..msg.to.id..':variables'
   end
   if hash then
@@ -25,7 +36,7 @@ end
 
 return {
   patterns = {
-   "^[!/]save ([^%s]+) (.+)$"
+   "^[#!/]save ([^%s]+) (.+)$"
   }, 
   run = run 
 }

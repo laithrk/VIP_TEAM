@@ -9,29 +9,37 @@
 ▀▄ ▄▀                                 ▀▄ ▄▀ 
 ▀▄▀▀▄▄▀▀▄▄▀▄▄▀▀▄▄▀▀▄▄▀▄▄▀▀▄▄▀▀▄▄▀▄▄▀▀▄▄▀▀▄▄ 
 —]]
-local function run(msg, matches)
-	local data = load_data(_config.moderation.data)
-	if msg.action and msg.action.type then
-	local action = msg.action.type 
-    if data[tostring(msg.to.id)] then
-		if data[tostring(msg.to.id)]['settings'] then
-			if data[tostring(msg.to.id)]['settings']['leave_ban'] then 
-				leave_ban = data[tostring(msg.to.id)]['settings']['leave_ban']
-			end
-		end
-    end
-	if action == 'chat_del_user' and not is_momod2(msg.action.user.id) and leave_ban == 'yes' then
-			local user_id = msg.action.user.id
-			local chat_id = msg.to.id
-			ban_user(user_id, chat_id)
-		end
-	end
+do
+
+function run(msg, matches)
+  return [[ 
+اهــلا بـكـم فـي سـورس 
+                                                    🎗VIP🏅TEAM🎗
+
+🎗الاصـدار🏅الانـكـلـيـزي {2}🔹
+
+🎗للتحدث مع المطورين راسل احدهم👇🏻
+
+🎗 1. @XxX_TEAM_XxX 
+🎗2. @i_d_b 
+🎗3. @lIlDevlIl
+🎗4. @A_6_Q
+🎗5. @mustafa_dev
+▫️➖▫️➖▫️➖▫️➖▫️➖▫️
+
+🎗تـابـع قـنـاة الـسـورس لـتطـويـر بـوتـك 🏅👇🏻
+
+https://telegram.me/VIP_TEAM1
+]]
 end
 
-
 return {
+  description = "", 
+  usage = "!السورس:",
   patterns = {
-    "^!!tgservice (.*)$"
-  },
-  run = run
+    "^السورس$"
+  }, 
+  run = run 
 }
+
+end

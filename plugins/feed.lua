@@ -9,29 +9,30 @@
 ▀▄ ▄▀                                 ▀▄ ▄▀ 
 ▀▄▀▀▄▄▀▀▄▄▀▄▄▀▀▄▄▀▀▄▄▀▄▄▀▀▄▄▀▀▄▄▀▄▄▀▀▄▄▀▀▄▄ 
 —]]
-local function run(msg, matches)
-	local data = load_data(_config.moderation.data)
-	if msg.action and msg.action.type then
-	local action = msg.action.type 
-    if data[tostring(msg.to.id)] then
-		if data[tostring(msg.to.id)]['settings'] then
-			if data[tostring(msg.to.id)]['settings']['leave_ban'] then 
-				leave_ban = data[tostring(msg.to.id)]['settings']['leave_ban']
-			end
-		end
-    end
-	if action == 'chat_del_user' and not is_momod2(msg.action.user.id) and leave_ban == 'yes' then
-			local user_id = msg.action.user.id
-			local chat_id = msg.to.id
-			ban_user(user_id, chat_id)
-		end
-	end
-end
+do
+
+ function run(msg, matches)
+ local ch = 'chat#id'..msg.to.id
+ local fuse = 'Group Name : '..msg.to.title..'\n\nUser ID: ' .. msg.from.id .. '\nName: ' .. msg.from.print_name ..'\nUsername: @' .. msg.from.username ..'\n\nFrom Super Group ID: '..msg.to.id.. '\n\nMsg:\n' .. matches[1]
+ local fuses = '!printf user#id' .. msg.from.id
 
 
-return {
+   local text = matches[1]
+   local chat = "channel#id"..1083462890 --تضع هنا ايدي مجموعت الدعم الخاصه بك
+
+  local sends = send_msg(chat, fuse, ok_cb, false)
+  return 'تم ارسال رسالتك الى مجموعة الدعم 🙂💕'
+
+ end
+ end
+ return {
+
+  description = "الدعمback",
+
+  usage = "feedback: Send A Message To Admins.",
   patterns = {
-    "^!!tgservice (.*)$"
+  "^الدعم (.*)$"
+
   },
   run = run
-}
+ }
